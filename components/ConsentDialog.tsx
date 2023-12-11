@@ -11,7 +11,7 @@ function ConsentDialog() {
 			const localConsent = getCookie('localConsent');
 			console.log(localConsent);
 
-			setShowDialog(localConsent ? true : false);
+			setShowDialog(localConsent ? false : true);
 		}
 	}, [windowGlobal]);
 
