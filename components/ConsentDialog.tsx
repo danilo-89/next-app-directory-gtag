@@ -1,10 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { getCookie, setCookie } from 'cookies-next';
+import { useGTag } from '@/context/GTagContext';
 
 function ConsentDialog() {
 	const windowGlobal = typeof window !== 'undefined' && window;
 	const [showDialog, setShowDialog] = useState(true);
+	const { setConsent } = useGTag();
 
 	useEffect(() => {
 		if (windowGlobal) {
@@ -32,8 +34,9 @@ function ConsentDialog() {
 					className='px-4 py-2 ml-auto border rounded-lg border-white block hover:bg-slate-800'
 					type='button'
 					onClick={() => {
-						// setCookie('localConsent', true)
+						setCookie('localConsent', true);
 						setShowDialog(false);
+						setConsent?.(true);
 					}}
 				>
 					Allow Cookies
