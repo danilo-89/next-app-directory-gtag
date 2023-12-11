@@ -30,6 +30,8 @@ export const GTagProvider = ({ tagId, children }: GTagProviderProps) => {
 	const localConsent = getCookie('localConsent');
 	const [consent, setConsent] = useState(false);
 
+	console.log({ tagId });
+
 	useEffect(() => {
 		setConsent(localConsent === 'true');
 	}, [localConsent]);
