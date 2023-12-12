@@ -1,4 +1,4 @@
-export default function Home() {
+export default async function Home() {
 	return (
 		<section>
 			<h2 className='font-bold text-xl mb-4'>Main page</h2>

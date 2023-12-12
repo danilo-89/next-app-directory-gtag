@@ -1,4 +1,4 @@
-function About() {
+async function About() {
 	return (
 		<section>
 			<h2 className='font-bold text-xl mb-4'>About page</h2>

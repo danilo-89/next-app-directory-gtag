@@ -1,4 +1,4 @@
-function Details() {
+async function Details() {
 	return (
 		<section>
 			<h2 className='font-bold text-xl mb-4'>Details page</h2>
