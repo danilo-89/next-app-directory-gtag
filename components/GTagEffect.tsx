@@ -6,7 +6,13 @@ import { usePathname, useSearchParams } from 'next/navigation';
 // Lib
 import { pageview } from '@/lib/utils/gtm';
 
-function TagEffect() {
+/**
+ * GTagEffect Component
+ *
+ * This component can be used if additional events need to be triggered on route change.
+ *
+ */
+function GTagEffect() {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
@@ -20,4 +26,4 @@ function TagEffect() {
 	return null;
 }
 
-export default TagEffect;
+export default GTagEffect;
