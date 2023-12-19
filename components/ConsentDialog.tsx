@@ -11,7 +11,7 @@ function ConsentDialog() {
 	useEffect(() => {
 		if (windowGlobal) {
 			const localConsent = getCookie('localConsent');
-			console.log(localConsent);
+			console.log({ localConsent });
 
 			setShowDialog(localConsent ? false : true);
 		}
