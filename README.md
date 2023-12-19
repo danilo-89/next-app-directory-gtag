@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS (with App Router) gtag example
 
-## Getting Started
+This project serves as a basic showcase for implementing Next.js (App Router) with the incorporation of Google Tag Manager to handle Google Tag and Cookie Consent functionalities.
 
-First, run the development server:
+Approach used in this example ensures that gtm script is not injected and no data is sent to google tag manager until user consent for cookies has been granted
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Environment Variable
+
+Set the GTAG_ID environment variable in your project with your Google Tag Manager ID.
+
+## Basic usage example
+
+**layout.tsx**
+
+```javascript
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode,
+}) {
+	return (
+		<html lang='en'>
+			<GTagProvider tagId={process.env.GTAG_ID}>
+				<body>{children}</body>
+			</GTagProvider>
+		</html>
+	);
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**template.tsx**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```javascript
+import { type ReactNode } from 'react';
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+import ConsentDialog from '@/components/ConsentDialog';
 
-## Learn More
+function template({ children }: { children: ReactNode }) {
+	return (
+		<main>
+			{children}
+			<ConsentDialog />
+		</main>
+	);
+}
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+export default template;
+```
